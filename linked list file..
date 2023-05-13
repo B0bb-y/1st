@@ -1,0 +1,91 @@
+# Linked List code of creation,deletion,searching,length and display.......... 
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class llist:
+    def __init__(self):
+        self.head=None
+    def is_empty(self):
+        return self.head is None
+    # insertion
+    def insertion_start(self,data):
+        new_Node=Node(data)
+        if self.is_empty():
+            self.head=new_Node
+        else:
+            new_Node.next=self.head
+            self.head=new_Node
+    def insertion_middle(self,n,data):
+        new_node=Node(data)
+        curr=self.head
+        if self.is_empty():
+            return
+        for _ in range(n-1):
+            if curr is None:
+                return 
+        while(n-1>0):
+            curr=curr.next
+            n-=1
+        temp=curr.next
+        curr=new_node
+        new_node.next=temp
+    def insertion_last(self,data):
+        new_Node=Node(data)
+        if self.is_empty():
+            self.head=new_Node
+        else:
+            temp=self.head
+            while(temp.next!=None):
+                temp=temp.next
+            temp.next=new_Node
+
+    #deletion
+    def deletion_start(self):
+        if self.is_empty():
+            return
+        else:
+            self.head=self.head.next
+    def deletion_middle(self,n):
+        curr=self.head
+        if self.is_empty():
+            return
+        for _ in range(n-1):
+            if curr is None:
+                return
+        while (n-1>0):
+            curr=curr.next
+            n-=1
+        curr.next=curr.next.next
+    def deletion_last(self):
+        temp=self.head
+        if self.is_empty():
+            return
+        elif temp.next == None:
+            self.head=None
+            return
+        else:
+            
+            while(temp.next.next!=None):
+                temp=temp.next
+            temp.next=None
+    #display
+    def display(self):
+        temp=self.head
+        while temp!=None:
+            print(temp.data)
+            temp=temp.next
+    #length
+    def length(self):
+        temp=self.head
+        c=0
+        while temp.next!=None:
+            c+=1
+        print(c)
+my_list=llist()
+my_list.insertion_start(5)
+my_list.insertion_last(10)
+my_list.insertion_start(12)
+my_list.insertion_start(2)
+my_list.display()
+my_list.length()
